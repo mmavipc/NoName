@@ -19,6 +19,12 @@
     <Filter Include="Header Files\Networking">
       <UniqueIdentifier>{46b179e5-7f71-42f2-bebc-8bb736bf3229}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\IRC">
+      <UniqueIdentifier>{3bf3699e-ee85-4dba-a24d-0f9a7fc355f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IRC">
+      <UniqueIdentifier>{d57ad8d6-22cd-4539-85d8-ef2ab3594017}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Networking\TCPSocket.h">
@@ -27,6 +33,9 @@
     <ClInclude Include="src\Networking\WinSocket.h">
       <Filter>Header Files\Networking</Filter>
     </ClInclude>
+    <ClInclude Include="src\IRC\GeneralHandler.h">
+      <Filter>Header Files\IRC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Networking\WinSocket.cpp">
@@ -34,6 +43,9 @@
     </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IRC\GeneralHandler.cpp">
+      <Filter>Source Files\IRC</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,28 +1,59 @@
 #include <iostream>
 
 #include "Networking\TCPSocket.h"
+#include "IRC\GeneralHandler.h"
 
+int FindSpaceCount(const std::string &str)
+{
+	int count = 0;
+	size_t pos = 0;
+	while(pos != std::string::npos)
+	{
+		pos = str.find(' ', pos);
+		if(pos != std::string::npos)
+		{
+			count++;
+			pos++;
+		}
+	}
+	return count;
+}
 
 int main()
 {
 	TCPSocket tcpsock;
+	GeneralHandler ghandler;
+
 	tcpsock.Connect("mmavipc.dyndns.org", 6667);
 	std::cout << tcpsock.GetError() << std::endl;
 	std::string str;
-	int c = 0;
+	if(!tcpsock.SendData("user mmavipc 0 * :none\nnick mmavipc2\n"))
+	{
+		std::cout << "Fatal error: " << tcpsock.GetError();
+	}
 	while(true)
 	{
 		std::cout << tcpsock.RecvLine(str) << " " << str << std::endl;
-		str = "";
-		c++; // lol C++
-		if(c == 2)
+		int spc = FindSpaceCount(str);
+		std::string *split = new std::string[spc+1];
+		int pos = 0;
+		int oldpos = 0;
+		for(int i = 0; i < spc+1; i++)
 		{
-			if(!tcpsock.SendData("user mmavipc 0 * :none\nnick mmavipc2\n"))
+			pos = str.find(' ', pos+1);
+			if(i != 0)
 			{
-				std::cout << "Fatal error: " << tcpsock.GetError();
-				break;
+				split[i] = str.substr(oldpos+1, pos-oldpos-1);
 			}
+			else
+			{
+				split[i] = str.substr(oldpos, pos-oldpos);
+			}
+			oldpos = pos;
 		}
+		ghandler.Handle(split, spc, tcpsock);
+		delete [] split;
+		str = "";
 	}
 	std::cin.ignore(10000, '\n');
 }

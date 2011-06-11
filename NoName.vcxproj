@@ -67,10 +67,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\IRC\GeneralHandler.h" />
     <ClInclude Include="src\Networking\TCPSocket.h" />
     <ClInclude Include="src\Networking\WinSocket.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\IRC\GeneralHandler.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Networking\WinSocket.cpp" />
   </ItemGroup>

@@ -57,7 +57,7 @@ bool WinSocket::Connect(const std::string &host, const unsigned short &ip)
 	return true;
 }
 
-bool WinSocket::SendData(std::string data)
+bool WinSocket::SendData(const std::string &data)
 {
 	int result;
 	result = send(m_socket, data.c_str(), data.length(), 0);
@@ -83,10 +83,7 @@ bool WinSocket::RecvLine(std::string &line, bool block)
 		}
 		else if(length==0)
 		{
-			if(!block)
-			{
-				loop = false;
-			}
+			return false;
 		}
 		else if(c != '\r')
 		{

@@ -17,7 +17,7 @@ class WinSocket
 
 		bool Connect(const std::string &host,const unsigned short &ip);
 
-		bool SendData(std::string data);
+		bool SendData(const std::string &data);
 
 		bool RecvLine(std::string &line, bool block = true);
 
