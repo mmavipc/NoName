@@ -5,6 +5,8 @@
 #include <ws2tcpip.h>
 #include <stdio.h>
 
+#include <string>
+
 #pragma comment(lib, "ws2_32.lib")
 
 class TCPSocket
@@ -12,6 +14,11 @@ class TCPSocket
 	public:
 		TCPSocket();
 		~TCPSocket();
+
+		bool Connect(std::string host, unsigned short ip);
+
+	private:
+		SOCKET m_socket;
 };
 
 #endif
