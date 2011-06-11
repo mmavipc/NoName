@@ -3,3 +3,9 @@
 *.opensdf
 *.suo
 *.vcxproj.user
+ipch/*
+
+#compiled shit
+Debug/*
+*.obj
+*.exe
