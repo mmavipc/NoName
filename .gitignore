@@ -1,0 +1,5 @@
+#visual studio shit
+*.sdf
+*.opensdf
+*.suo
+*.vcxproj.user
