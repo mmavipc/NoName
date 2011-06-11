@@ -1,19 +1,20 @@
 #include "WinSocket.h"
 #include <cassert>
+#include <sstream>
 
-TCPSocket::TCPSocket()
+WinSocket::WinSocket()
 {
 	WSADATA wsaData;
 	int result = WSAStartup(MAKEWORD(2, 2), &wsaData);
 	assert(result==0);
 }
 
-TCPSocket::~TCPSocket()
+WinSocket::~WinSocket()
 {
 	WSACleanup();
 }
 
-bool TCPSocket::Connect(std::string host, unsigned short ip)
+bool WinSocket::Connect(const std::string &host, const unsigned short &ip)
 {
 	struct addrinfo *result = NULL;
 	struct addrinfo	*ptr = NULL;
@@ -54,4 +55,27 @@ bool TCPSocket::Connect(std::string host, unsigned short ip)
 	}
 
 	return true;
+}
+
+bool WinSocket::SendData(std::string data)
+{
+	int result;
+	result = send(m_socket, data.c_str(), data.length(), 0);
+
+	if(result != 0)
+	{
+		return false;
+	}
+	return true;
+}
+
+std::string WinSocket::GetError()
+{
+	std::stringstream ss;
+	ss << "WSAGetLastError: " << WSAGetLastError();
+	int buflen = 64;
+	char buf[64];
+	int result = getsockopt(m_socket, SOL_SOCKET, SO_ERROR, buf, &buflen);
+	ss << " Socket Error: " << std::string(buf, buflen);
+	return ss.str();
 }

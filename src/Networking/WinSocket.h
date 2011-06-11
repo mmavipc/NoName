@@ -9,13 +9,17 @@
 
 #pragma comment(lib, "ws2_32.lib")
 
-class TCPSocket
+class WinSocket
 {
 	public:
-		TCPSocket();
-		~TCPSocket();
+		WinSocket();
+		~WinSocket();
 
-		bool Connect(std::string host, unsigned short ip);
+		bool Connect(const std::string &host,const unsigned short &ip);
+
+		bool SendData(std::string data);
+
+		std::string GetError();
 
 	private:
 		SOCKET m_socket;
