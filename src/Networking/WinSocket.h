@@ -19,6 +19,8 @@ class WinSocket
 
 		bool SendData(std::string data);
 
+		bool RecvLine(std::string &line, bool block = true);
+
 		std::string GetError();
 
 	private:

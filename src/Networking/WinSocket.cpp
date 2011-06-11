@@ -62,9 +62,40 @@ bool WinSocket::SendData(std::string data)
 	int result;
 	result = send(m_socket, data.c_str(), data.length(), 0);
 
-	if(result != 0)
+	if(result == SOCKET_ERROR)
 	{
 		return false;
+	}
+	return true;
+}
+
+bool WinSocket::RecvLine(std::string &line, bool block)
+{
+	char c = 0;
+	bool loop = true;
+	int length = 0;
+	while(loop)
+	{
+		length = recv(m_socket, &c, 1, 0);
+		if(length < 0)
+		{
+			return false;
+		}
+		else if(length==0)
+		{
+			if(!block)
+			{
+				loop = false;
+			}
+		}
+		else if(c != '\r')
+		{
+			if(c == '\n')
+			{
+				return true;
+			}
+			line += c;
+		}
 	}
 	return true;
 }
