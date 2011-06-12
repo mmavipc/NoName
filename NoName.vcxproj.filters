@@ -36,6 +36,9 @@
     <ClInclude Include="src\IRC\GeneralHandler.h">
       <Filter>Header Files\IRC</Filter>
     </ClInclude>
+    <ClInclude Include="src\IRC\Numerics.h">
+      <Filter>Header Files\IRC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Networking\WinSocket.cpp">

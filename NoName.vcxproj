@@ -68,6 +68,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\IRC\GeneralHandler.h" />
+    <ClInclude Include="src\IRC\Numerics.h" />
     <ClInclude Include="src\Networking\TCPSocket.h" />
     <ClInclude Include="src\Networking\WinSocket.h" />
   </ItemGroup>

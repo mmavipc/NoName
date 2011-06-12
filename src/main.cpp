@@ -27,13 +27,19 @@ int main()
 	tcpsock.Connect("mmavipc.dyndns.org", 6667);
 	std::cout << tcpsock.GetError() << std::endl;
 	std::string str;
-	if(!tcpsock.SendData("user mmavipc 0 * :none\nnick mmavipc2\n"))
+	if(!tcpsock.SendData("PASS :test\r\nSERVER services.mmavipc.dyndns.org 0 :NoName Services\r\n"))
 	{
 		std::cout << "Fatal error: " << tcpsock.GetError();
 	}
 	while(true)
 	{
-		std::cout << tcpsock.RecvLine(str) << " " << str << std::endl;
+		bool result = tcpsock.RecvLine(str);
+		if(!result)
+		{
+			std::cout << "Fatal error: " << tcpsock.GetError();
+			break;
+		}
+		std::cout << result << " " << str << std::endl;
 		int spc = FindSpaceCount(str);
 		std::string *split = new std::string[spc+1];
 		int pos = 0;
