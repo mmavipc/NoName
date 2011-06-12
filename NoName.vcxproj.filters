@@ -48,6 +48,9 @@
     <ClInclude Include="src\Bot\GenericBot.h">
       <Filter>Header Files\Bot</Filter>
     </ClInclude>
+    <ClInclude Include="src\GlobalData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Networking\WinSocket.cpp">
@@ -61,6 +64,9 @@
     </ClCompile>
     <ClCompile Include="src\Bot\GenericBot.cpp">
       <Filter>Source Files\Bot</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GlobalData.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

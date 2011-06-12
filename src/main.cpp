@@ -5,6 +5,7 @@
 #include "Networking\TCPSocket.h"
 #include "IRC\GeneralHandler.h"
 #include "Bot\GenericBot.h"
+#include "GlobalData.h"
 
 int FindSpaceCount(const std::string &str)
 {
@@ -25,6 +26,7 @@ int FindSpaceCount(const std::string &str)
 int main()
 {
 	TCPSocket tcpsock;
+	GlobalData *gData = new GlobalData("NULL", &tcpsock);
 	GeneralHandler ghandler;
 
 	tcpsock.Connect("mmavipc.dyndns.org", 6667);
@@ -36,7 +38,7 @@ int main()
 	{
 		std::cout << "Fatal error: " << tcpsock.GetError();
 	}
-	GenericBot lolbot("lolbot", tcpsock);
+	GenericBot lolbot("lolbot");
 	lolbot.RunCommand("JOIN #lol");
 	while(true)
 	{
