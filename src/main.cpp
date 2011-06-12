@@ -1,7 +1,10 @@
 #include <iostream>
+#include <ctime>
+#include <sstream>
 
 #include "Networking\TCPSocket.h"
 #include "IRC\GeneralHandler.h"
+#include "Bot\GenericBot.h"
 
 int FindSpaceCount(const std::string &str)
 {
@@ -27,10 +30,14 @@ int main()
 	tcpsock.Connect("mmavipc.dyndns.org", 6667);
 	std::cout << tcpsock.GetError() << std::endl;
 	std::string str;
-	if(!tcpsock.SendData("PASS :test\r\nSERVER services.mmavipc.dyndns.org 0 :NoName Services\r\n"))
+	std::stringstream cTime;
+	cTime << (long long)time(NULL);
+	if(!tcpsock.SendData("PASS :test\r\nSERVER services.mmavipc.dyndns.org 0 :NoName Services\r\nEOS\r\n"))
 	{
 		std::cout << "Fatal error: " << tcpsock.GetError();
 	}
+	GenericBot lolbot("lolbot", tcpsock);
+	lolbot.RunCommand("JOIN #lol");
 	while(true)
 	{
 		bool result = tcpsock.RecvLine(str);

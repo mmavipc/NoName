@@ -14,6 +14,7 @@ bool GeneralHandler::Handle(const std::string *split, const int paramNum, TCPSoc
 	if(command == "PING")
 	{
 		sock.SendData("PONG " + split[paramStart] + "\r\n");
+		return true;
 	}
 	return false;
 }

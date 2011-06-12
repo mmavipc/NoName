@@ -25,6 +25,12 @@
     <Filter Include="Source Files\IRC">
       <UniqueIdentifier>{d57ad8d6-22cd-4539-85d8-ef2ab3594017}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Bot">
+      <UniqueIdentifier>{4c325919-46b5-4cf7-85c3-6241fe1be62f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Bot">
+      <UniqueIdentifier>{be3ebf06-577c-406e-9ea0-d8045b475d08}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Networking\TCPSocket.h">
@@ -39,6 +45,9 @@
     <ClInclude Include="src\IRC\Numerics.h">
       <Filter>Header Files\IRC</Filter>
     </ClInclude>
+    <ClInclude Include="src\Bot\GenericBot.h">
+      <Filter>Header Files\Bot</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Networking\WinSocket.cpp">
@@ -49,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="src\IRC\GeneralHandler.cpp">
       <Filter>Source Files\IRC</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Bot\GenericBot.cpp">
+      <Filter>Source Files\Bot</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
