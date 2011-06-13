@@ -4,7 +4,7 @@
 
 GlobalData *gData = NULL;
 
-GlobalData::GlobalData(const std::string &configFile, TCPSocket *tcpsock)
+GlobalData::GlobalData(const std::string &configFile, TCPSocket *tcpsock) : m_botList()
 {
 	//Dummy
 	m_serverName = "services.mmavipc.dyndns.org";

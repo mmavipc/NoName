@@ -39,7 +39,8 @@ int main()
 		std::cout << "Fatal error: " << tcpsock.GetError();
 	}
 	GenericBot lolbot("lolbot");
-	lolbot.RunCommand("JOIN #lol");
+	lolbot.JoinChannel("#lol");
+	//Never do this, for testing purposes only
 	while(true)
 	{
 		bool result = tcpsock.RecvLine(str);
@@ -66,7 +67,21 @@ int main()
 			}
 			oldpos = pos;
 		}
-		ghandler.Handle(split, spc);
+		int params = 0;
+		for(int i = 1; i < spc+1; i++)
+		{
+			if(split[i].substr(0, 1) == ":")
+			{
+				params = i+1;
+				split[i] = split[i].substr(1, split[i].length()-1);
+				for(int j = i+1; j < spc+1; j++)
+				{
+					split[i] += " " + split[j];
+				}
+				break;
+			}
+		}
+		ghandler.Handle(split, params);
 		delete [] split;
 		str = "";
 	}

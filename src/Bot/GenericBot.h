@@ -11,6 +11,8 @@ class GenericBot
 		void RunCommand(const std::string &cmd);
 		void JoinChannel(const std::string &channelName, bool execJoinCmd = true);
 
+		void RecvMsg(const std::string &origin, const std::string &destination, const std::string &msg);
+
 	private:
 		std::string m_name;
 		long long m_createTime;

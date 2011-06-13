@@ -16,6 +16,7 @@ GenericBot::GenericBot(const std::string &name) : m_channelList()
 	timestr << m_createTime;
 
 	GlobalData::GetGlobalData()->GetSocket().SendData("NICK " + name + " 0 " + timestr.str() + " " + name + " services.com services.mmavipc.dyndns.org 0 : " + name + "\r\n");
+	GlobalData::GetGlobalData()->m_botList.insert(GlobalData::GetGlobalData()->m_botList.end(), this);
 }
 
 void GenericBot::RunCommand(const std::string &cmd)
@@ -28,5 +29,30 @@ void GenericBot::JoinChannel(const std::string &channelName, bool execJoinCmd)
 	if(execJoinCmd)
 	{
 		RunCommand("JOIN " + channelName);
+	}
+	m_channelList.insert(m_channelList.end(), channelName);
+}
+
+void GenericBot::RecvMsg(const std::string &origin, const std::string &destination, const std::string &msg)
+{
+	if(destination.substr(0,1) == "#")
+	{
+		bool found = false;
+		for(unsigned int i = 0; i < m_channelList.size(); i++)
+		{
+			if(m_channelList[i] == destination)
+			{
+				found = true;
+				break;
+			}
+		}
+		if(found)
+		{
+			RunCommand("PRIVMSG " + destination + " :" + origin + ": " + msg);
+		}
+	}
+	else
+	{
+		RunCommand("PRIVMSG " + origin + " :" + origin + ": " + msg);
 	}
 }
