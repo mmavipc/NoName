@@ -66,7 +66,7 @@ int main()
 			}
 			oldpos = pos;
 		}
-		ghandler.Handle(split, spc, tcpsock);
+		ghandler.Handle(split, spc);
 		delete [] split;
 		str = "";
 	}

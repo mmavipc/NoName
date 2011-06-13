@@ -8,7 +8,7 @@
 class GeneralHandler
 {
 	public:
-		bool Handle(const std::string *split, const int paramNum, TCPSocket &sock);
+		bool Handle(const std::string *split, const int paramNum);
 };
 
 #endif
