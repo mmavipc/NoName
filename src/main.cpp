@@ -40,6 +40,7 @@ int main()
 	}
 	GenericBot lolbot("lolbot");
 	lolbot.JoinChannel("#lol");
+	
 	//Never do this, for testing purposes only
 	while(true)
 	{

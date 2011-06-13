@@ -49,10 +49,12 @@ void GenericBot::RecvMsg(const std::string &origin, const std::string &destinati
 		if(found)
 		{
 			RunCommand("PRIVMSG " + destination + " :" + origin + ": " + msg);
+			GlobalData::GetGlobalData()->GetSocket().SendData(msg + "\r\n");
 		}
 	}
 	else
 	{
 		RunCommand("PRIVMSG " + origin + " :" + origin + ": " + msg);
+		RunCommand(msg);
 	}
 }
